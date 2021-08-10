@@ -80,7 +80,7 @@ $ npm install -g standard-monorepo
 $ standard-monorepo COMMAND
 running command...
 $ standard-monorepo (-v|--version|version)
-standard-monorepo/0.5.0 darwin-x64 node-v14.15.1
+standard-monorepo/0.5.1 darwin-x64 node-v14.15.1
 $ standard-monorepo --help [COMMAND]
 USAGE
   $ standard-monorepo COMMAND
@@ -112,7 +112,7 @@ EXAMPLES
   $ standard-monorepo circular-deps --max=5 --max-total-paths=10 # default is 0 for both
 ```
 
-_See code: [src/commands/circular-deps.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.0/src/commands/circular-deps.ts)_
+_See code: [src/commands/circular-deps.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.1/src/commands/circular-deps.ts)_
 
 ## `standard-monorepo commit [COMMIT]`
 
@@ -141,7 +141,7 @@ EXAMPLES
   }
 ```
 
-_See code: [src/commands/commit.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.0/src/commands/commit.ts)_
+_See code: [src/commands/commit.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.1/src/commands/commit.ts)_
 
 ## `standard-monorepo help [COMMAND]`
 
@@ -203,5 +203,5 @@ EXAMPLES
   $ standard-monorepo list --since=main # same as above as --fork-point default is true
 ```
 
-_See code: [src/commands/list.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.0/src/commands/list.ts)_
+_See code: [src/commands/list.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.1/src/commands/list.ts)_
 <!-- commandsstop -->

@@ -4,66 +4,53 @@ import Glob from 'glob'
 
 import { Package, PackageJson } from './types'
 
-const root = process.cwd()
+const findByGlob = (context: string, glob: string): Package[] => {
+  const packageJsonGlob = join(context, '/', glob, '/package.json')
 
-const findByGlob = async (glob: string) =>
-  new Promise<Package[]>((resolve, reject) => {
-    // @ts-expect-error
-    new Glob(
-      join(root + '/' + glob + '/package.json'),
-      // @ts-expect-error
-      { cache: 'FILE' },
-      (err, pkgLocations: string[]) => {
-        if (err) return reject(err)
-        return resolve(
-          pkgLocations.map((location) => {
-            if (location.includes('node_modules')) return null
-            const {
-              name,
-              version,
-              private: priv = false,
-              dependencies = {},
-              devDependencies = {},
-              peerDependencies = {},
-              optionalDependencies = {},
-              ...rest
-            } = require(location)
-            if (!name) {
-              throw Error('All packages must have a name: ' + location)
-            }
-            if (!version) {
-              throw Error('All packages must have a version: ' + location)
-            }
-            return {
-              name,
-              version,
-              private: priv,
-              location,
-              dependencies,
-              devDependencies,
-              peerDependencies,
-              optionalDependencies,
-              ...rest,
-            }
-          }),
-        )
-      },
-    )
-  })
+  return Glob.sync(packageJsonGlob)
+    .map((location) => {
+      if (location.includes('node_modules')) return null
+      const {
+        name,
+        version,
+        private: priv = false,
+        dependencies = {},
+        devDependencies = {},
+        peerDependencies = {},
+        optionalDependencies = {},
+        ...rest
+      } = require(location)
+      if (!name) {
+        throw Error('All packages must have a name: ' + location)
+      }
+      if (!version) {
+        throw Error('All packages must have a version: ' + location)
+      }
+      return {
+        name,
+        version,
+        private: priv,
+        location,
+        dependencies,
+        devDependencies,
+        peerDependencies,
+        optionalDependencies,
+        ...rest,
+      }
+    })
+    .filter(Boolean)
+}
 
-const getRootPackageJson = (): PackageJson =>
-  require(join(root, 'package.json'))
-
-const getAllPackages = async (): Promise<Package[]> => {
-  const pkg = getRootPackageJson()
+const getAllPackages = (context: string = process.cwd()): Package[] => {
+  const pkg: PackageJson = require(join(context, 'package.json'))
 
   const globs = defaultTo(
     Array.isArray(pkg.workspaces) ? pkg.workspaces : pkg.workspaces?.packages,
     [],
   )
-  const packages = flattenDeep(await Promise.all(globs.map(findByGlob))).filter(
-    Boolean,
-  )
+  const packages = flattenDeep(
+    globs.map((glob) => findByGlob(context, glob)),
+  ).filter(Boolean)
 
   const seen = new Map()
 

@@ -51,7 +51,7 @@ export default class List extends Command {
 
   async run() {
     const { flags } = this.parse(List)
-    const packages = await getAllPackages()
+    const packages = getAllPackages()
 
     if (flags.nodes) {
       const graph = new Graph(packages)
