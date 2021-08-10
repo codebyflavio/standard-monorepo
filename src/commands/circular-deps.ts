@@ -28,7 +28,7 @@ export default class CircularDeps extends Command {
   async run() {
     const { flags } = this.parse(CircularDeps)
 
-    const packages = await getAllPackages()
+    const packages = getAllPackages()
     const graph = new Graph(packages)
     const circDeps = graph.detectCycle()
     const message = getCircularDepsMessage(circDeps, flags)
