@@ -1,6 +1,6 @@
 {
   "name": "standard-monorepo",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "author": "Flávio Carvalho",
   "license": "MIT",
   "main": "lib/index.js",
