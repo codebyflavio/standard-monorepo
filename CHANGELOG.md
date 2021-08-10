@@ -1,3 +1,15 @@
+# v0.5.2 (Tue Aug 10 2021)
+
+#### 🐛 Bug Fix
+
+- feat: add context to get all packages [#33](https://github.com/flaviouk/standard-monorepo/pull/33) ([@flaviouk](https://github.com/flaviouk))
+
+#### Authors: 1
+
+- Flávio Carvalho ([@flaviouk](https://github.com/flaviouk))
+
+---
+
 # v0.5.1 (Mon Jul 19 2021)
 
 #### 🐛 Bug Fix
