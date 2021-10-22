@@ -1,3 +1,15 @@
+# v0.6.0 (Fri Oct 22 2021)
+
+#### 🚀 Enhancement
+
+- feat: add cache key command [#34](https://github.com/flaviouk/standard-monorepo/pull/34) ([@flaviouk](https://github.com/flaviouk))
+
+#### Authors: 1
+
+- Flávio Carvalho ([@flaviouk](https://github.com/flaviouk))
+
+---
+
 # v0.5.2 (Tue Aug 10 2021)
 
 #### 🐛 Bug Fix
