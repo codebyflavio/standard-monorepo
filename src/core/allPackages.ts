@@ -41,7 +41,7 @@ const findByGlob = (context: string, glob: string): Package[] => {
     .filter(Boolean)
 }
 
-const getAllPackages = (context: string = process.cwd()): Package[] => {
+export const getAllPackages = (context: string = process.cwd()): Package[] => {
   const pkg: PackageJson = require(join(context, 'package.json'))
 
   const globs = defaultTo(

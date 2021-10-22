@@ -80,7 +80,7 @@ $ npm install -g standard-monorepo
 $ standard-monorepo COMMAND
 running command...
 $ standard-monorepo (-v|--version|version)
-standard-monorepo/0.5.1 darwin-x64 node-v14.15.1
+standard-monorepo/0.5.2 darwin-x64 node-v14.15.1
 $ standard-monorepo --help [COMMAND]
 USAGE
   $ standard-monorepo COMMAND
@@ -91,10 +91,27 @@ USAGE
 # Commands
 
 <!-- commands -->
+* [`standard-monorepo cache-key`](#standard-monorepo-cache-key)
 * [`standard-monorepo circular-deps`](#standard-monorepo-circular-deps)
 * [`standard-monorepo commit [COMMIT]`](#standard-monorepo-commit-commit)
 * [`standard-monorepo help [COMMAND]`](#standard-monorepo-help-command)
 * [`standard-monorepo list`](#standard-monorepo-list)
+
+## `standard-monorepo cache-key`
+
+```
+USAGE
+  $ standard-monorepo cache-key
+
+OPTIONS
+  -h, --help  show CLI help
+  --cwd       context should be from where the command was run
+
+EXAMPLE
+  $ standard-monorepo cache-key # 93ead503b3bc9b08c2e07da10ef34162
+```
+
+_See code: [src/commands/cache-key.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.2/src/commands/cache-key.ts)_
 
 ## `standard-monorepo circular-deps`
 
@@ -112,7 +129,7 @@ EXAMPLES
   $ standard-monorepo circular-deps --max=5 --max-total-paths=10 # default is 0 for both
 ```
 
-_See code: [src/commands/circular-deps.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.1/src/commands/circular-deps.ts)_
+_See code: [src/commands/circular-deps.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.2/src/commands/circular-deps.ts)_
 
 ## `standard-monorepo commit [COMMIT]`
 
@@ -141,7 +158,7 @@ EXAMPLES
   }
 ```
 
-_See code: [src/commands/commit.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.1/src/commands/commit.ts)_
+_See code: [src/commands/commit.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.2/src/commands/commit.ts)_
 
 ## `standard-monorepo help [COMMAND]`
 
@@ -203,5 +220,5 @@ EXAMPLES
   $ standard-monorepo list --since=main # same as above as --fork-point default is true
 ```
 
-_See code: [src/commands/list.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.1/src/commands/list.ts)_
+_See code: [src/commands/list.ts](https://github.com/imflavio/standard-monorepo/blob/v0.5.2/src/commands/list.ts)_
 <!-- commandsstop -->
