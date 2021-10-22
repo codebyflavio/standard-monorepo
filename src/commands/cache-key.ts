@@ -10,6 +10,26 @@ export default class CacheKey extends Command {
 
   static examples = [
     '$ standard-monorepo cache-key # 93ead503b3bc9b08c2e07da10ef34162',
+    '$ standard-monorepo cache-key --cwd # 93ead503b3bc9b08c2e07da10ef34162',
+    '$ standard-monorepo cache-key --github # ::set-output name=cacheKey::{env.PREFIX}-93ead503b3bc9b08c2e07da10ef34162',
+    `- name: Get nodemodules cache key
+        id: cache-key
+        shell: bash
+        run: npx standard-monorepo cache-key
+        env:
+          PREFIX: ubuntu-latest-node-14.16.0
+          
+      - name: Cache node modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          key: steps.cache-key.outputs.cacheKey
+          restore-keys: steps.cache-key.outputs.cacheKey`,
   ]
 
   static args = []
@@ -19,6 +39,10 @@ export default class CacheKey extends Command {
     cwd: flags.boolean({
       description:
         'use the context from where the command was run to determine root of the monorepo',
+      default: false,
+    }),
+    github: flags.boolean({
+      description: 'print github actions output',
       default: false,
     }),
   }
@@ -39,6 +63,12 @@ export default class CacheKey extends Command {
       .map(md5File.sync)
       .reduce((acc: string, cur: string) => md5(acc + cur), '') as string
 
-    this.log(cacheKey)
+    const prefix = process.env.PREFIX
+
+    this.log(
+      flags.github
+        ? `::set-output name=cacheKey::${prefix ? `${prefix}-` : ''}${cacheKey}`
+        : cacheKey,
+    )
   }
 }
