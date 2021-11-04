@@ -78,10 +78,15 @@ export const getCircularDepsMessage = (
 export const printPackages = (
   packages: Package[],
   onlyFlag: string,
+  filterFlag: string = '',
 ): Message => ({
   type: 'success',
   text: JSON.stringify(
-    packages.map((pkg) => pick(pkg, onlyFlag.split(','))),
+    packages
+      .filter(({ name }) =>
+        filterFlag ? new RegExp(filterFlag).exec(name) !== null : true,
+      )
+      .map((pkg) => pick(pkg, onlyFlag.split(','))),
     null,
     2,
   ),

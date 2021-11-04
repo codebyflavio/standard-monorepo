@@ -1,4 +1,5 @@
-import { padMessage, getCircularDepsMessage } from '../message'
+import { padMessage, getCircularDepsMessage, printPackages } from '../message'
+import { Package } from '../types'
 
 describe('[padMessage]', () => {
   it('should pad with success', () => {
@@ -164,6 +165,99 @@ describe('[getCircularDepsMessage]', () => {
               c -> 
       ",
         "type": "fail",
+      }
+    `)
+  })
+})
+
+describe('[printPackages]', () => {
+  const packages: Package[] = [
+    {
+      name: '@foo/a',
+      version: '0.0.0',
+      location: 'foo/a',
+    },
+    {
+      name: '@foo/b',
+      version: '0.0.0',
+      location: 'foo/b',
+    },
+    {
+      name: '@bar/a',
+      version: '0.0.0',
+      location: 'bar/a',
+    },
+  ] as Package[]
+
+  it('only name', () => {
+    expect(printPackages(packages, 'name', '')).toMatchInlineSnapshot(`
+      Object {
+        "text": "[
+        {
+          \\"name\\": \\"@foo/a\\"
+        },
+        {
+          \\"name\\": \\"@foo/b\\"
+        },
+        {
+          \\"name\\": \\"@bar/a\\"
+        }
+      ]",
+        "type": "success",
+      }
+    `)
+  })
+
+  test('name and location', () => {
+    expect(printPackages(packages, 'name,location', '')).toMatchInlineSnapshot(`
+      Object {
+        "text": "[
+        {
+          \\"name\\": \\"@foo/a\\",
+          \\"location\\": \\"foo/a\\"
+        },
+        {
+          \\"name\\": \\"@foo/b\\",
+          \\"location\\": \\"foo/b\\"
+        },
+        {
+          \\"name\\": \\"@bar/a\\",
+          \\"location\\": \\"bar/a\\"
+        }
+      ]",
+        "type": "success",
+      }
+    `)
+  })
+
+  test('search scope', () => {
+    expect(printPackages(packages, 'name', '@foo')).toMatchInlineSnapshot(`
+      Object {
+        "text": "[
+        {
+          \\"name\\": \\"@foo/a\\"
+        },
+        {
+          \\"name\\": \\"@foo/b\\"
+        }
+      ]",
+        "type": "success",
+      }
+    `)
+  })
+
+  test('search name', () => {
+    expect(printPackages(packages, 'name', '/a')).toMatchInlineSnapshot(`
+      Object {
+        "text": "[
+        {
+          \\"name\\": \\"@foo/a\\"
+        },
+        {
+          \\"name\\": \\"@bar/a\\"
+        }
+      ]",
+        "type": "success",
       }
     `)
   })
