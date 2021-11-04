@@ -19,6 +19,7 @@ export default class List extends Command {
       { name: 'c', version: '1.0.0' },
     ]),
     '$ standard-monorepo list --only="name,version,private,location,dependencies,devDependencies,peerDependencies,optionalDependencies"',
+    '$ standard-monorepo list --only="name" --filter="foo"',
     '$ standard-monorepo list --nodes # Shows all packages and their dependencies in an indexed table',
     '$ standard-monorepo list --since=gitsha --only=name,version --no-fork-point',
     '$ standard-monorepo list --since=$(git merge-base --fork-point main)',
@@ -37,6 +38,9 @@ export default class List extends Command {
     only: flags.string({
       description: 'fields to return for each package',
       default: 'name,version,private,location',
+    }),
+    filter: flags.string({
+      description: 'glob to filter packages',
     }),
     since: flags.string({
       description: 'list all packages that have changed since a git ref',
@@ -65,9 +69,9 @@ export default class List extends Command {
       const graph = new Graph(packages)
       const changedPackages = graph.getChangedPackages(filesChanged)
 
-      this.log(printPackages(changedPackages, flags.only).text)
+      this.log(printPackages(changedPackages, flags.only, flags.filter).text)
     } else {
-      this.log(printPackages(packages, flags.only).text)
+      this.log(printPackages(packages, flags.only, flags.filter).text)
     }
   }
 }

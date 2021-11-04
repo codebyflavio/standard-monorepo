@@ -71,9 +71,6 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "jest": {
-    "automock": true
-  },
   "prettier": {
     "printWidth": 80,
     "semi": false,
@@ -87,6 +84,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "volta": {
-    "node": "14.15.1"
+    "node": "14.15.1",
+    "yarn": "1.22.17"
   }
 }

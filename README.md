@@ -80,7 +80,7 @@ $ npm install -g standard-monorepo
 $ standard-monorepo COMMAND
 running command...
 $ standard-monorepo (-v|--version|version)
-standard-monorepo/0.6.0 darwin-x64 node-v14.15.1
+standard-monorepo/0.6.1 darwin-x64 node-v14.15.1
 $ standard-monorepo --help [COMMAND]
 USAGE
   $ standard-monorepo COMMAND
@@ -132,7 +132,7 @@ EXAMPLES
              restore-keys: steps.cache-key.outputs.cacheKey
 ```
 
-_See code: [src/commands/cache-key.ts](https://github.com/imflavio/standard-monorepo/blob/v0.6.0/src/commands/cache-key.ts)_
+_See code: [src/commands/cache-key.ts](https://github.com/imflavio/standard-monorepo/blob/v0.6.1/src/commands/cache-key.ts)_
 
 ## `standard-monorepo circular-deps`
 
@@ -150,7 +150,7 @@ EXAMPLES
   $ standard-monorepo circular-deps --max=5 --max-total-paths=10 # default is 0 for both
 ```
 
-_See code: [src/commands/circular-deps.ts](https://github.com/imflavio/standard-monorepo/blob/v0.6.0/src/commands/circular-deps.ts)_
+_See code: [src/commands/circular-deps.ts](https://github.com/imflavio/standard-monorepo/blob/v0.6.1/src/commands/circular-deps.ts)_
 
 ## `standard-monorepo commit [COMMIT]`
 
@@ -179,7 +179,7 @@ EXAMPLES
   }
 ```
 
-_See code: [src/commands/commit.ts](https://github.com/imflavio/standard-monorepo/blob/v0.6.0/src/commands/commit.ts)_
+_See code: [src/commands/commit.ts](https://github.com/imflavio/standard-monorepo/blob/v0.6.1/src/commands/commit.ts)_
 
 ## `standard-monorepo help [COMMAND]`
 
@@ -204,6 +204,7 @@ USAGE
 
 OPTIONS
   -h, --help         show CLI help
+  --filter=filter    glob to filter packages
 
   --[no-]fork-point  list all packages that have changed since a fork point, using "git merge-base --fork-point
                      $YOUR_REF"
@@ -234,6 +235,7 @@ EXAMPLES
   ]
   $ standard-monorepo list 
   --only="name,version,private,location,dependencies,devDependencies,peerDependencies,optionalDependencies"
+  $ standard-monorepo list --only="name" --filter="foo"
   $ standard-monorepo list --nodes # Shows all packages and their dependencies in an indexed table
   $ standard-monorepo list --since=gitsha --only=name,version --no-fork-point
   $ standard-monorepo list --since=$(git merge-base --fork-point main)
@@ -241,5 +243,5 @@ EXAMPLES
   $ standard-monorepo list --since=main # same as above as --fork-point default is true
 ```
 
-_See code: [src/commands/list.ts](https://github.com/imflavio/standard-monorepo/blob/v0.6.0/src/commands/list.ts)_
+_See code: [src/commands/list.ts](https://github.com/imflavio/standard-monorepo/blob/v0.6.1/src/commands/list.ts)_
 <!-- commandsstop -->
