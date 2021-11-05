@@ -1,3 +1,15 @@
+# v0.7.0 (Fri Nov 05 2021)
+
+#### 🚀 Enhancement
+
+- feat: add filter list [#36](https://github.com/flaviouk/standard-monorepo/pull/36) ([@flaviouk](https://github.com/flaviouk))
+
+#### Authors: 1
+
+- Flávio Carvalho ([@flaviouk](https://github.com/flaviouk))
+
+---
+
 # v0.6.1 (Fri Oct 22 2021)
 
 #### 🐛 Bug Fix
