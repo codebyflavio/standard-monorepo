@@ -1,3 +1,15 @@
+# v0.7.1 (Wed Nov 10 2021)
+
+#### 🐛 Bug Fix
+
+- feat: expose get changed packages [#37](https://github.com/flaviouk/standard-monorepo/pull/37) ([@flaviouk](https://github.com/flaviouk))
+
+#### Authors: 1
+
+- Flávio Carvalho ([@flaviouk](https://github.com/flaviouk))
+
+---
+
 # v0.7.0 (Fri Nov 05 2021)
 
 #### 🚀 Enhancement
