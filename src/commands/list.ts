@@ -21,10 +21,8 @@ export default class List extends Command {
     '$ standard-monorepo list --only="name,version,private,location,dependencies,devDependencies,peerDependencies,optionalDependencies"',
     '$ standard-monorepo list --only="name" --filter="foo"',
     '$ standard-monorepo list --nodes # Shows all packages and their dependencies in an indexed table',
-    '$ standard-monorepo list --since=gitsha --only=name,version --no-fork-point',
-    '$ standard-monorepo list --since=$(git merge-base --fork-point main)',
-    '$ standard-monorepo list --since=main --fork-point # same as above',
-    '$ standard-monorepo list --since=main # same as above as --fork-point default is true',
+    '$ standard-monorepo list --since=gitsha --only=name,version',
+    '$ standard-monorepo list --since=$(git merge-base main HEAD)',
   ]
 
   static args = []
@@ -45,12 +43,6 @@ export default class List extends Command {
     since: flags.string({
       description: 'list all packages that have changed since a git ref',
     }),
-    'fork-point': flags.boolean({
-      description:
-        'list all packages that have changed since a fork point, using "git merge-base --fork-point $YOUR_REF"',
-      default: true,
-      allowNo: true,
-    }),
   }
 
   async run() {
@@ -62,10 +54,7 @@ export default class List extends Command {
 
       this.log(printNodes(graph.nodes))
     } else if (flags.since) {
-      const filesChanged = await getChangedFiles(
-        flags.since,
-        flags['fork-point'],
-      )
+      const filesChanged = await getChangedFiles(flags.since)
       const graph = new Graph(packages)
       const changedPackages = graph.getChangedPackages(filesChanged)
 
