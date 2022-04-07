@@ -1,3 +1,15 @@
+# v0.8.0 (Thu Apr 07 2022)
+
+#### 🚀 Enhancement
+
+- fix: remove fork point [#39](https://github.com/flaviouk/standard-monorepo/pull/39) ([@flaviouk](https://github.com/flaviouk))
+
+#### Authors: 1
+
+- Flávio Carvalho ([@flaviouk](https://github.com/flaviouk))
+
+---
+
 # v0.7.1 (Wed Nov 10 2021)
 
 #### 🐛 Bug Fix
