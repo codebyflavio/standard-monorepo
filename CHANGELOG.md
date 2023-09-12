@@ -1,3 +1,16 @@
+# v0.9.0 (Tue Sep 12 2023)
+
+#### 🚀 Enhancement
+
+- chore(deps): update dependency globby to v12 [#32](https://github.com/flaviouk/standard-monorepo/pull/32) ([@renovate-bot](https://github.com/renovate-bot) [@renovate[bot]](https://github.com/renovate[bot]))
+
+#### Authors: 2
+
+- [@renovate[bot]](https://github.com/renovate[bot])
+- Mend Renovate ([@renovate-bot](https://github.com/renovate-bot))
+
+---
+
 # v0.8.0 (Thu Apr 07 2022)
 
 #### 🚀 Enhancement
